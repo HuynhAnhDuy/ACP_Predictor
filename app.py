@@ -128,7 +128,7 @@ st.markdown("---")
 st.subheader("🔬 About the Tool")
 st.markdown("""
     🧪 Predict the **anticancer potential of peptides** using a stacking-based ensemble framework.  
-    🧠 This tool leverages a **Convolutional Neural Network (CNN)** and a **Transformer** as base learners, intergrated with a **Random Forest** as the meta-classifier.  
+    🧠 This tool leverages a **Convolutional Neural Network (CNN)** and a **Transformer** as base learners, integrated with a **Random Forest** as the meta-classifier.  
     ➕ The model is trained on **conjoint representations** of peptide sequences, combining **One-hot encoding** and **ESM (Evolutionary Scale Modeling)** embeddings.
     """)
 
