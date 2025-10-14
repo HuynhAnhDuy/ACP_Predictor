@@ -1,4 +1,8 @@
 import streamlit as st
+
+# ==== Page Config ====
+st.set_page_config(page_title="Anti-Cancer Peptide Predictor", layout="centered",initial_sidebar_state="expanded")
+
 import pandas as pd
 import numpy as np
 import os
@@ -10,7 +14,8 @@ from tensorflow.keras.models import load_model
 from preprocessing import extract_features  # ensure path is correct
 from PIL import Image
 
-# ==== Global constants ====
+
+#==== Global constants ====
 MAX_LENGTH = 111
 FEATURE_DIM = 340  # 20 one-hot + 320 ESM
 
@@ -64,9 +69,6 @@ def increment_visit_counter():
         return count
 
 visit_count = increment_visit_counter()
-
-# ==== Page Config ====
-st.set_page_config(page_title="Anti-Cancer Peptide Predictor", layout="centered",initial_sidebar_state="expanded")
 
 # ==== Custom CSS ====
 st.markdown("""
