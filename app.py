@@ -132,6 +132,48 @@ st.markdown("""
     ➕ The model is trained on **conjoint representations** of peptide sequences, combining **One-hot encoding** and **ESM (Evolutionary Scale Modeling)** embeddings.
     """)
 
+# ==== Model Comparison Table ====
+comparison_data = {
+    "Test set": [
+         "ACPScanner (n = 138)", "ACPScanner (n = 138)",
+        "ACPred-LAF (n = 122)", "ACPred-LAF (n = 122)", "ACPred-LAF (n = 122)", "ACPred-LAF (n = 122)","ACPred-LAF (n = 122)", 
+        "ACP240 (n = 240)","ACP240 (n = 240)", 
+        "ACP240 (n = 740)","ACP240 (n = 740)",
+    ],
+    "Model": [
+        "Stacking CNN–Transformer (Our model)", "ACPScanner",
+        "Stacking CNN–Transformer (Our model)", "ACPred-LAF-Basic", "ACPred-LAF-MSE", "ACPred-LAF-MSC", "ACPred-LAF-MSMC",
+        "Stacking CNN–Transformer (Our model)", "ACP-DL",
+        "Stacking CNN–Transformer (Our model)", "ACP-DL"
+    ],
+    "Accuracy": [0.952, 0.950, 0.943, 0.795, 0.803, 0.787, 0.812, 0.904, 0.854, 0.832, 0.815],
+    "AUROC":   [0.997, 0.994, 0.994, 0.821, 0.817, 0.796, 0.827, 0.979, "Not Reported", 0.926, "Not Reported"],
+    "MCC":     [0.889, 0.872, 0.886, 0.594, 0.607, 0.601, 0.633, 0.807, 0.714, 0.674, 0.631],
+    "Sensitivity": [0.996, 0.937, 0.923, 0.738, 0.820, 0.639, 0.721, 0.930, 0.846, 0.922, 0.826],
+    "Specificity": [0.856, 0.993, 0.962, 0.853, 0.787, 0.934, 0.902, 0.874, 0.899, 0.738, 0.806]
+}
+
+df_cmp = pd.DataFrame(comparison_data)
+
+# ==== Highlight "Our model" ====
+def highlight_our_model(row):
+    return ['background-color: #e0f0ff' if 'Our model' in str(row.Model) else '' for _ in row]
+
+styled_df = (
+    df_cmp.reset_index(drop=True)  # 👉 Xóa index
+    .style
+    .apply(highlight_our_model, axis=1)
+    .format(precision=3)
+)
+
+# ==== Section title ====
+st.markdown("---")
+st.subheader("📊 Benchmarking Against State-of-the-Art Tools")
+st.markdown("_Comparison of model performance across multiple data sets._")
+
+# ==== Display Table ====
+st.dataframe(styled_df,hide_index=True)
+
 # ==== Sidebar ====
 with st.sidebar:
     st.header("📋 Instructions")
