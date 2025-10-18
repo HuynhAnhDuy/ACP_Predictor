@@ -194,7 +194,7 @@ tab1, tab2 = st.tabs(["🧬 Single Prediction", "📁 Batch via CSV"])
 
 # ==== Tab 1: Single Prediction ====
 with tab1:
-    seq_input = st.text_input("👉 Enter a peptide sequence:", placeholder="e.g. ACDEFGHIKLMNPQRSTVWY")
+    seq_input = st.text_input("👉 Enter a peptide sequence (Sequence length should not exceed 111 amino acids):", placeholder="e.g. ACDEFGHIKLMNPQRSTVWY")
 
     if st.button("Predict ACP"):
         if seq_input.strip():
@@ -217,7 +217,7 @@ with tab1:
 
 # ==== Tab 2: Batch Prediction ====
 with tab2:
-    uploaded_file = st.file_uploader("📤 Upload a CSV file containing a 'Sequence' column", type=["csv"])
+    uploaded_file = st.file_uploader("📤 Upload a CSV file containing a 'Sequence' column (Sequence length should not exceed 111 amino acids)", type=["csv"])
     if uploaded_file:
         df_input = pd.read_csv(uploaded_file)
         if "Sequence" not in df_input.columns:
